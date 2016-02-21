@@ -144,7 +144,7 @@ public class Greedy {
 
 		int distanceWh = getDistance(dr.row, dr.col, wh.row, wh.col) + 1;
 
-		int distanceOrder = getDistance(wh.row, wh.col, dr.row, dr.col) + 1;
+		int distanceOrder = getDistance(order.row, order.col, wh.row, wh.col) + 1;
 
 		if ((dr.turnsNb + distanceWh + distanceOrder) < grSol.problem.turnsNb && quantityTaken > 0) {
 			int weight = grSol.problem.orderWeights.get(productId) * quantityTaken;
@@ -156,7 +156,8 @@ public class Greedy {
 
 			wh.products[productId] -= quantityTaken;
 			order.products[productId] -= quantityTaken;
-			order.currentTurn = grSol.currentTurnNb + distanceWh + distanceOrder;
+			order.currentTurn = order.currentTurn != null ? Math.max(order.currentTurn, (grSol.currentTurnNb + distanceWh + distanceOrder)
+					) : (grSol.currentTurnNb + distanceWh + distanceOrder);
 		}
 
 		return (grSol.currentTurnNb + distanceWh + distanceOrder);
