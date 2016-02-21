@@ -12,6 +12,7 @@ public class Order {
 	public Integer deliveredTurn;
 	
 	public int[] products;
+	public Integer currentTurn;
 	
 	public Order(int id, int row, int col) {
 		this.id = id;
@@ -19,6 +20,7 @@ public class Order {
 		this.col = col;
 		
 		this.deliveredTurn = null;
+		this.currentTurn = null;
 		// TODO Auto-generated constructor stub
 	}
 	

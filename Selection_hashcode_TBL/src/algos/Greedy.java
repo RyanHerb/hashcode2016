@@ -122,10 +122,11 @@ public class Greedy {
 					}
 				}
 
+				// not exactly true, the estimated score is an approximation
 				if (order.deliveredTurn == null && isDelivered) {
 					System.out.println("... order " + order.id + " is delivered ");
 					System.out.println("... turn : " + grSol.currentTurnNb);
-					order.deliveredTurn = grSol.currentTurnNb;
+					order.deliveredTurn = order.currentTurn;
 				}
 			}
 
@@ -155,9 +156,10 @@ public class Greedy {
 
 			wh.products[productId] -= quantityTaken;
 			order.products[productId] -= quantityTaken;
+			order.currentTurn = grSol.currentTurnNb + distanceWh + distanceOrder;
 		}
 
-		return (dr.turnsNb + distanceWh + distanceOrder);
+		return (grSol.currentTurnNb + distanceWh + distanceOrder);
 	}
 
 	public void makesUnoccupiedDroneSleep(Solution grSol) {
